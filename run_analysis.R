@@ -33,7 +33,7 @@ y_test <- transform(y_test, V1 = as.character.numeric_version(V1))
 merge_y <- rbind(y_train, y_test) #Combination of rows of y_train and y_test
 merge_y$V1 <- factor(merge_y$V1, levels = c(1,2,3,4,5,6), labels = c("walking",
 "walking_upstairs", "walking_downstairs", "sitting", "standing", "laying"))
-colnames(merge_y) <- "activity-labels"  #Set colname of merge_y
+colnames(merge_y) <- "activity"  #Set colname of merge_y
 
 merge_x <- rbind(X_train, X_test) #Combination of rows of X_train and X_test
 colnames(merge_x) <- Tfeatures  #Set colname of merge_x with vector "Tfeatures"
@@ -56,42 +56,42 @@ View(mmean_std)
 # of each variable for each activity and each subject.
 
 #Activity: walking
-filter1 <- filter(mmean_std, activity_labels == "walking") #Divide by activity walking.
+filter1 <- filter(mmean_std, activity == "walking") #Divide by activity walking.
         avgsubj1 <- mutate(filter1, avgsub1 = rowMeans(filter1[,2:66])) #Calculates average per subject 
         View(avgsubj1)
         avgvar1 <- rbind(filter1, avgvar1 = colMeans(filter1[,2:66])) #Calculates average per variable
         View(avgvar1)
 
 #Activity: walking_upstairs
-filter2 <- filter(mmean_std, activity_labels == "walking_upstairs") #Divide by activity walking_upstairs.
+filter2 <- filter(mmean_std, activity == "walking_upstairs") #Divide by activity walking_upstairs.
         avgsubj2 <- mutate(filter2, avgsub2 = rowMeans(filter2[,2:66])) #Calculates average per subject 
         View(avgsubj2)
         avgvar2 <- rbind(filter2, avgvar2 = colMeans(filter2[,2:66])) #Calculates average per variable
         View(avgvar2)
 
 #Activity: walking_downstairs
-filter3 <- filter(mmean_std, activity_labels == "walking_downstairs") #Divide by activity walking_downstairs.
+filter3 <- filter(mmean_std, activity == "walking_downstairs") #Divide by activity walking_downstairs.
         avgsubj3 <- mutate(filter3, avgsub3 = rowMeans(filter3[,2:66])) #Calculates average per subject 
         View(avgsubj3)
         avgvar3 <- rbind(filter3, avgvar3 = colMeans(filter3[,2:66])) #Calculates average per variable
         View(avgvar3)
 
 #Activity: sitting
-filter4 <- filter(mmean_std, activity_labels == "sitting") #Divide by activity sitting.
+filter4 <- filter(mmean_std, activity == "sitting") #Divide by activity sitting.
         avgsubj4 <- mutate(filter4, avgsub4 = rowMeans(filter4[,2:66])) #Calculates average per subject 
         View(avgsubj4)
         avgvar4 <- rbind(filter4, avgvar4 = colMeans(filter4[,2:66])) #Calculates average per variable
         View(avgvar4)
 
 #Activity: standing
-filter5 <- filter(mmean_std, activity_labels == "standing") #Divide by activity standing.
+filter5 <- filter(mmean_std, activity == "standing") #Divide by activity standing.
         avgsubj5 <- mutate(filter5, avgsub5 = rowMeans(filter5[,2:66])) #Calculates average per subject 
         View(avgsubj5)
         avgvar5 <- rbind(filter5, avgvar5 = colMeans(filter5[,2:66])) #Calculates average per variable
         View(avgvar5)
         
 #Activity: laying
-filter6 <- filter(mmean_std, activity_labels == "laying") #Divide by activity laying.
+filter6 <- filter(mmean_std, activity == "laying") #Divide by activity laying.
         avgsubj6 <- mutate(filter6, avgsub6 = rowMeans(filter6[,2:66])) #Calculates average per subject 
         View(avgsubj6)
         avgvar6 <- rbind(filter6, avgvar6 = colMeans(filter6[,2:66])) #Calculates average per variable

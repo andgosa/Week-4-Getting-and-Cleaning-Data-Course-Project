@@ -1,5 +1,11 @@
 DATA DICTIONARY - Human Activity Recognition
 
+Activity
+Each ones of the activities (walking, walking_upstairs,etc) realized by a person.
+
+Subject
+Each person that realized an activity.
+
 tBodyAcc-mean-X
 Mean body acceleration signal in X direction, unit: time.
         

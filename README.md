@@ -16,11 +16,13 @@ For merging the training and the test sets to create one data set.First, we read
 
 Merging was made by steps. First, for tables containing training and test labels (y_train and y_test) it was verified its dimensions and transformed column to a "character numeric version", so later could be sustitute levels per labels (levels = c(1,2,3,4,5,6), labels = c("walking","walking_upstairs", "walking_downstairs", "sitting", "standing", "laying")). Both tables represent a person and an activity performed (one is for 70% of the volunteers generating the training data and 30% the test data.) for each one are merge with "rbind" function, getting data frame "merge_y"" and it is assigned is colname "activity"
 
-Second, for tables containing Test Set and Training Set (X_test and X_train), that have the same number of columns when checking dimensions, it was used againg "rbind" function for merging both data sets and asigned the name "merge_x". 
-It is assigned colnames with previous "Tfeatures". Finally, it is used "cbind" function to merge training and test sets to create one data set "merge_x_y".
+Second, it was made a combination of rows with subject_train and subject_test to get a total list of each one of subject (30 in total) who realized and activity.
+
+Third, for tables containing Test Set and Training Set (X_test and X_train), that have the same number of columns when checking dimensions, it was used againg "rbind" function for merging both data sets and asigned the name "merge_x". 
+It is assigned colnames with previous "Tfeatures". Finally, it is used "cbind" function to merge training and test sets with subject to create one data set "merge_x_y_subject".
 
 # 2. Extracts only the measurements on the mean and standard deviation for each measurement.
-From previous data frame (merge_x_y), it is selected those columns with mean and standard deviation in colnames c(1:7, 42:47, 82:87, 122:127, 162:167, 202:203, 215:216, 228:229, 241:242, 254:255, 267:272, 346:351, 425:430, 504:505, 517:518, 530:531, 543:544) with the subsetting function, getting "mmean_std". 
+From previous data frame (merge_x_y_subject), it is selected those columns with mean and standard deviation in colnames c(1:7, 42:47, 82:87, 122:127, 162:167, 202:203, 215:216, 228:229, 241:242, 254:255, 267:272, 346:351, 425:430, 504:505, 517:518, 530:531, 543:544) with the subsetting function, getting "mmean_std". 
 
 # 5.From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
-To select each activity, in previuos data frame "mmean_std" was used "filter" function to column "activity" to select, the first one, "walking" creating a matrix call "filter1". After selecting it, it was used "mutate" function to previous matrix to calculate mean by subject (each row), getting "avgsub1". Lastly, it was calculated column mean (for each variable) with "rbind" and "colMeans" function under the matrix "avgvar1". This process was repeated for each activity, changing the number at the end of each data frame (filter, avgsub and avgvar). 
+According to Hadley Wickham's Tidy Data paper and to facilitate the calculation of the mean, we will used wide narrow calculation of the data (please keep in mind marking rubric specifically accepts wide or long presentation of tidy data).For that we used "aggregate" function keeping activity and subject subsetting and calculating mean for the other variables (66 variables).
